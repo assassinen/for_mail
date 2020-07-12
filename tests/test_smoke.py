@@ -1,16 +1,16 @@
 import requests
 import pytest
 
-host = '0.0.0.0'
-port = 5000
 
 cases = [
-    (1, 'нечетное'),
-    (2, 'четное')
+    (1, 'odd'),
+    (2, 'even')
 ]
 @pytest.mark.parametrize('value, result', cases,
-                         ids=[f' test_value: {i[0]}' for i in cases])
-def test_smoke_positive(value, result):
+                         ids=[f' test_value: {i[0]}  - result: {i[1]}' for i in cases])
+def test_smoke_positive(entry_point, value, result):
+    host = entry_point.get('host')
+    port = entry_point.get('port')
     response = requests.get(f'http://{host}:{port}/{value}')
     assert response.status_code == 200
     assert result == response.text
@@ -22,7 +22,9 @@ cases = [
     ('!@#$%^&*', 404),
 ]
 @pytest.mark.parametrize('value, result', cases,
-                         ids=[f' test_value: {i[0]}' for i in cases])
-def test_smoke_negativ(value, result):
+                         ids=[f' test_value: {i[0]}  - result: {i[1]}' for i in cases])
+def test_smoke_negative(entry_point, value, result):
+    host = entry_point.get('host')
+    port = entry_point.get('port')
     response = requests.get(f'http://{host}:{port}/{value}')
     assert response.status_code == result

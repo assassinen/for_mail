@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/<int:number>', methods=['GET'])
 def index(number):
-    return "четное" if number % 2 == 0 else "нечетное"
+    return "even" if number % 2 == 0 else "odd"
 
 
 if __name__ == '__main__':

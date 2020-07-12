@@ -5,7 +5,9 @@ up:
 	docker-compose up web
 
 test:
-	docker-compose run web pytest tests/
+	docker-compose up -d web
+	docker-compose run test pytest -s -v
+	docker-compose stop -t 1 web
 
 stop:
-	docker-compose stop -t 3 web
+	docker-compose stop -t 1 web
