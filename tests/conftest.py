@@ -2,8 +2,7 @@ import pytest
 
 @pytest.yield_fixture
 def entry_point(request):
-    entry_points = {'docker': {'host': 'web', 'port': 5000},
-                    'local': {'host': '127.0.0.1', 'port': 80},
+    entry_points = {'local': {'host': '127.0.0.1', 'port': 80},
                     'nginx': {'host': 'web', 'port': 80}}
     entry_point_name = request.config.getoption('--entry_point')
     yield entry_points.get(entry_point_name)
