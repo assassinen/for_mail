@@ -3,4 +3,4 @@
 `make up`
 
 ## Testing
-`make test_via_nginx`
+`make tes`
